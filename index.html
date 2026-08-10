@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>🌹 Una rosa para ti</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            #5b1b2d 0%,
+            #260914 45%,
+            #080207 100%
+        );
+    font-family: Arial, sans-serif;
+}
+
+.contenedor {
+    position: relative;
+    width: min(94vw, 360px);
+    height: min(94dvh, 680px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rosa {
+    position: absolute;
+    width: 330px;
+    height: 620px;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+/* =========================
+   BRILLO
+========================= */
+
+.brillo {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    left: 25px;
+    top: 25px;
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 84, 119, .28) 0%,
+            rgba(255, 23, 66, .13) 35%,
+            transparent 70%
+        );
+
+    filter: blur(18px);
+    opacity: 0;
+    transform: scale(.4);
+    pointer-events: none;
+}
+
+.floreciendo .brillo {
+    animation: brilloRosa 3s 3.4s ease-out forwards;
+}
+
+@keyframes brilloRosa {
+    0% {
+        opacity: 0;
+        transform: scale(.4);
+    }
+
+    40% {
+        opacity: .9;
+        transform: scale(1.15);
+    }
+
+    100% {
+        opacity: .55;
+        transform: scale(1);
+    }
+}
+
+/* =========================
+   DESTELLO CENTRAL
+========================= */
+
+.destello {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    left: 161px;
+    top: 145px;
+    border-radius: 50%;
+    background: white;
+    box-shadow:
+        0 0 8px white,
+        0 0 18px #ff8fa4,
+        0 0 35px #ff3155;
+    opacity: 0;
+    z-index: 60;
+}
+
+.floreciendo .destello {
+    animation:
+        destelloRosa
+        1.8s
+        4.4s
+        ease-in-out
+        infinite;
+}
+
+@keyframes destelloRosa {
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(.4);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.8);
+    }
+}
+
+/* =========================
+   TALLO
+========================= */
+
+.tallo {
+    position: absolute;
+    width: 17px;
+    height: 300px;
+    left: 151px;
+    top: 260px;
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #063616,
+            #1c7136 45%,
+            #0a421d 75%,
+            #052510
+        );
+
+    transform: scaleY(0) rotate(2deg);
+    transform-origin: top;
+}
+
+.floreciendo .tallo {
+    animation:
+        crecerTallo
+        2.8s
+        .3s
+        cubic-bezier(.25,.7,.25,1)
+        forwards;
+}
+
+@keyframes crecerTallo {
+    0% {
+        transform: scaleY(0) rotate(2deg);
+    }
+
+    100% {
+        transform: scaleY(1) rotate(-2deg);
+    }
+}
+
+/* =========================
+   ESPINAS
+========================= */
+
+.espina {
+    position: absolute;
+    width: 10px;
+    height: 5px;
+    background: #176b2d;
+    opacity: 0;
+    border-radius: 100% 0 100% 0;
+}
+
+.e1 {
+    left: 143px;
+    top: 350px;
+    transform: rotate(-30deg);
+}
+
+.e2 {
+    left: 160px;
+    top: 405px;
+    transform: rotate(25deg);
+}
+
+.floreciendo .espina {
+    animation: aparecerEspina .7s 2.5s forwards;
+}
+
+@keyframes aparecerEspina {
+    to {
+        opacity: .9;
+    }
+}
+
+/* =========================
+   HOJAS
+========================= */
+
+.hoja {
+    position: absolute;
+    width: 115px;
+    height: 58px;
+    opacity: 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #46a952,
+            #176d2d 55%,
+            #073a18
+        );
+
+    box-shadow:
+        inset 8px 5px 10px rgba(155,232,154,.2),
+        0 3px 8px rgba(0,0,0,.35);
+}
+
+.hoja::after {
+    content: "";
+    position: absolute;
+    width: 90px;
+    height: 2px;
+    background: rgba(155,220,139,.4);
+    top: 50%;
+    left: 10px;
+    transform: rotate(-8deg);
+}
+
+.hoja1 {
+    left: 35px;
+    top: 405px;
+    border-radius: 90% 10% 90% 10%;
+    transform: rotate(20deg) scale(.2);
+    transform-origin: right center;
+}
+
+.hoja2 {
+    left: 160px;
+    top: 455px;
+    border-radius: 10% 90% 10% 90%;
+    transform: rotate(-22deg) scale(.2);
+    transform-origin: left center;
+}
+
+.floreciendo .hoja1 {
+    animation:
+        aparecerHoja1
+        1.2s
+        2.7s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+.floreciendo .hoja2 {
+    animation:
+        aparecerHoja2
+        1.2s
+        3.1s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+@keyframes aparecerHoja1 {
+    to {
+        opacity: 1;
+        transform: rotate(20deg) scale(1);
+    }
+}
+
+@keyframes aparecerHoja2 {
+    to {
+        opacity: 1;
+        transform: rotate(-22deg) scale(1);
+    }
+}
+
+/* =========================
+   FLOR
+========================= */
+
+.flor {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    top: 10px;
+    left: 0;
+
+    transform: scale(.05);
+    opacity: 0;
+    z-index: 5;
+}
+
+.floreciendo .flor {
+    animation:
+        aparecerFlor
+        5.5s
+        cubic-bezier(.2,.75,.2,1)
+        forwards;
+}
+
+@keyframes aparecerFlor {
+    0% {
+        transform: scale(.05);
+        opacity: 0;
+    }
+
+    18% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* =========================
+   PÉTALOS
+========================= */
+
+.petalo {
+    position: absolute;
+    left: 50%;
+    top: 51%;
+
+    width: 105px;
+    height: 165px;
+
+    transform-origin: 50% 100%;
+
+    border-radius: 58% 48% 65% 38%;
+
+    background:
+        radial-gradient(
+            ellipse at 30% 18%,
+            #ffb4bd 0%,
+            #ff788b 12%,
+            transparent 30%
+        ),
+        linear-gradient(
+            125deg,
+            #f85b72,
+            #c41439 55%,
+            #70001d 100%
+        );
+
+    box-shadow:
+        inset 5px 6px 12px rgba(255,204,211,.27),
+        inset -10px -18px 20px rgba(67,0,15,.53),
+        1px 5px 10px rgba(0,0,0,.45);
+
+    opacity: 0;
+}
+
+.p1 {
+    --rot: -18deg;
+    --delay: .5s;
+    --esc: .91;
+}
+
+.p2 {
+    --rot: 17deg;
+    --delay: .7s;
+    --esc: .95;
+}
+
+.p3 {
+    --rot: 54deg;
+    --delay: .9s;
+    --esc: .89;
+}
+
+.p4 {
+    --rot: 91deg;
+    --delay: 1.05s;
+    --esc: .94;
+}
+
+.p5 {
+    --rot: 129deg;
+    --delay: 1.25s;
+    --esc: .91;
+}
+
+.p6 {
+    --rot: 168deg;
+    --delay: 1.45s;
+    --esc: .95;
+}
+
+.p7 {
+    --rot: 207deg;
+    --delay: 1.65s;
+    --esc: .92;
+}
+
+.p8 {
+    --rot: 245deg;
+    --delay: 1.85s;
+    --esc: .97;
+}
+
+.p9 {
+    --rot: 283deg;
+    --delay: 2s;
+    --esc: .98;
+}
+
+.p10 {
+    --rot: 321deg;
+    --delay: 2.2s;
+    --esc: .94;
+}
+
+.p11 {
+    --rot: -48deg;
+    --delay: 2.45s;
+    --esc: .76;
+}
+
+.p12 {
+    --rot: 225deg;
+    --delay: 2.65s;
+    --esc: .79;
+}
+
+.p13 {
+    --rot: 8deg;
+    --delay: 2.85s;
+    --esc: .68;
+}
+
+.p14 {
+    --rot: 185deg;
+    --delay: 3s;
+    --esc: .70;
+}
+
+.floreciendo .petalo {
+    animation:
+        abrirPetalo
+        1.55s
+        var(--delay)
+        cubic-bezier(.18,.78,.25,1)
+        forwards;
+}
+
+@keyframes abrirPetalo {
+    0% {
+        opacity: 0;
+        transform:
+            translate(-50%,-95%)
+            rotate(var(--rot))
+            scale(.03);
+    }
+
+    45% {
+        opacity: 1;
+    }
+
+    75% {
+        transform:
+            translate(-50%,-100%)
+            rotate(calc(var(--rot) - 4deg))
+            scale(calc(var(--esc) * 1.04));
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translate(-50%,-100%)
+            rotate(var(--rot))
+            scale(var(--esc));
+    }
+}
+
+/* =========================
+   CENTRO
+========================= */
+
+.centro {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+
+    width: 78px;
+    height: 92px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.05);
+
+    opacity: 0;
+    z-index: 30;
+
+    border-radius: 65% 45% 60% 48%;
+
+    background:
+        radial-gradient(
+            ellipse at 35% 20%,
+            #ff9aa8,
+            transparent 30%
+        ),
+        linear-gradient(
+            130deg,
+            #ed3e5d,
+            #9c092d 65%,
+            #4e0015
+        );
+
+    box-shadow:
+        inset 5px 5px 10px rgba(255,195,203,.27),
+        inset -9px -13px 15px rgba(59,0,13,.6);
+}
+
+.centro::before {
+    content: "";
+    position: absolute;
+    width: 42px;
+    height: 76px;
+    left: 8px;
+    top: 8px;
+
+    border-radius: 70% 30% 65% 40%;
+
+    background:
+        linear-gradient(
+            130deg,
+            #ff7185,
+            #a9082d
+        );
+
+    transform: rotate(-25deg);
+}
+
+.centro::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 70px;
+    right: 7px;
+    top: 12px;
+
+    border-radius: 30% 70% 40% 65%;
+
+    background:
+        linear-gradient(
+            125deg,
+            #f85c74,
+            #870020
+        );
+
+    transform: rotate(27deg);
+}
+
+.floreciendo .centro {
+    animation:
+        aparecerCentro
+        1.7s
+        3.7s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+@keyframes aparecerCentro {
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(.05)
+            rotate(-10deg);
+    }
+
+    70% {
+        transform:
+            translate(-50%,-50%)
+            scale(1.04)
+            rotate(3deg);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1)
+            rotate(0deg);
+    }
+}
+
+/* =========================
+   PARTÍCULAS
+========================= */
+
+.particulas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 50;
+}
+
+.particula {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 6px white,
+        0 0 14px #ff7890;
+
+    opacity: 0;
+}
+
+.particula:nth-child(1) {
+    left: 12%;
+    top: 35%;
+    --particle-delay: 4s;
+}
+
+.particula:nth-child(2) {
+    left: 82%;
+    top: 30%;
+    --particle-delay: 4.3s;
+}
+
+.particula:nth-child(3) {
+    left: 25%;
+    top: 48%;
+    --particle-delay: 4.6s;
+}
+
+.particula:nth-child(4) {
+    left: 76%;
+    top: 55%;
+    --particle-delay: 4.9s;
+}
+
+.particula:nth-child(5) {
+    left: 40%;
+    top: 20%;
+    --particle-delay: 5.2s;
+}
+
+.particula:nth-child(6) {
+    left: 63%;
+    top: 18%;
+    --particle-delay: 5.5s;
+}
+
+.particula:nth-child(7) {
+    left: 8%;
+    top: 65%;
+    --particle-delay: 5.8s;
+}
+
+.particula:nth-child(8) {
+    left: 90%;
+    top: 67%;
+    --particle-delay: 6.1s;
+}
+
+.floreciendo .particula {
+    animation:
+        aparecerParticula
+        2.8s
+        var(--particle-delay)
+        ease-out
+        infinite;
+}
+
+@keyframes aparecerParticula {
+    0% {
+        opacity: 0;
+        transform: scale(.2) translateY(15px);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: .8;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.4) translateY(-45px);
+    }
+}
+
+/* =========================
+   PÉTALOS CAYENDO
+========================= */
+
+.petalos-caida {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.petalo-caida {
+    position: absolute;
+    top: -30px;
+
+    width: 14px;
+    height: 20px;
+
+    border-radius: 80% 20% 80% 20%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9aaa,
+            #c41439
+        );
+
+    opacity: 0;
+
+    filter:
+        drop-shadow(
+            0 2px 4px rgba(0,0,0,.5)
+        );
+}
+
+.floreciendo .petalo-caida {
+    animation:
+        caerPetalo
+        var(--fall-duration)
+        var(--fall-delay)
+        linear
+        infinite;
+}
+
+.petalo-caida:nth-child(1) {
+    left: 8%;
+    --fall-duration: 7s;
+    --fall-delay: 5s;
+}
+
+.petalo-caida:nth-child(2) {
+    left: 22%;
+    --fall-duration: 9s;
+    --fall-delay: 6s;
+}
+
+.petalo-caida:nth-child(3) {
+    left: 38%;
+    --fall-duration: 8s;
+    --fall-delay: 7s;
+}
+
+.petalo-caida:nth-child(4) {
+    left: 54%;
+    --fall-duration: 10s;
+    --fall-delay: 5.5s;
+}
+
+.petalo-caida:nth-child(5) {
+    left: 70%;
+    --fall-duration: 8s;
+    --fall-delay: 8s;
+}
+
+.petalo-caida:nth-child(6) {
+    left: 86%;
+    --fall-duration: 9s;
+    --fall-delay: 6.5s;
+}
+
+@keyframes caerPetalo {
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(-30px)
+            translateX(0)
+            rotate(0deg);
+    }
+
+    10% {
+        opacity: .9;
+    }
+
+    50% {
+        transform:
+            translateY(45vh)
+            translateX(35px)
+            rotate(180deg);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(110vh)
+            translateX(-30px)
+            rotate(360deg);
+    }
+}
+
+/* =========================
+   BOTÓN
+========================= */
+
+button {
+    position: absolute;
+
+    bottom:
+        max(
+            15px,
+            env(safe-area-inset-bottom)
+        );
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border: none;
+    border-radius: 30px;
+
+    padding: 14px 24px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e51b49,
+            #78001d
+        );
+
+    font-size: 16px;
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    box-shadow:
+        0 7px 22px rgba(0,0,0,.6),
+        0 0 15px rgba(255,49,85,.27);
+
+    cursor: pointer;
+
+    transition:
+        transform .15s,
+        box-shadow .2s;
+}
+
+button:active {
+    transform:
+        translateX(-50%)
+        scale(.93);
+}
+
+button:hover {
+    box-shadow:
+        0 7px 25px rgba(0,0,0,.6),
+        0 0 25px rgba(255,49,85,.47);
+}
+
+/* =========================
+   MÓVILES
+========================= */
+
+@media (max-height: 650px) {
+    .rosa {
+        top: -35px;
+        transform:
+            translateX(-50%)
+            scale(.86);
+    }
+
+    button {
+        bottom: 8px;
+        padding: 11px 21px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 340px) {
+    .rosa {
+        transform:
+            translateX(-50%)
+            scale(.88);
+    }
+
+    button {
+        font-size: 14px;
+        padding: 11px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <div class="rosa" id="rosa">
+
+        <div class="brillo"></div>
+        <div class="destello"></div>
+
+        <div class="particulas">
+            <div class="particula"></div>
+            <div class="particula"></div>
+            <div class="particula"></div>
+            <div class="particula"></div>
+            <div class="particula"></div>
+            <div class="particula"></div>
+            <div class="particula"></div>
+            <div class="particula"></div>
+        </div>
+
+        <div class="flor">
+
+            <div class="petalo p1"></div>
+            <div class="petalo p2"></div>
+            <div class="petalo p3"></div>
+            <div class="petalo p4"></div>
+            <div class="petalo p5"></div>
+            <div class="petalo p6"></div>
+            <div class="petalo p7"></div>
+            <div class="petalo p8"></div>
+            <div class="petalo p9"></div>
+            <div class="petalo p10"></div>
+
+            <div class="petalo p11"></div>
+            <div class="petalo p12"></div>
+            <div class="petalo p13"></div>
+            <div class="petalo p14"></div>
+
+            <div class="centro"></div>
+
+        </div>
+
+        <div class="tallo"></div>
+
+        <div class="espina e1"></div>
+        <div class="espina e2"></div>
+
+        <div class="hoja hoja1"></div>
+        <div class="hoja hoja2"></div>
+
+    </div>
+
+    <div class="petalos-caida">
+
+        <div class="petalo-caida"></div>
+        <div class="petalo-caida"></div>
+        <div class="petalo-caida"></div>
+        <div class="petalo-caida"></div>
+        <div class="petalo-caida"></div>
+        <div class="petalo-caida"></div>
+
+    </div>
+
+    <button type="button" onclick="florecer()">
+        🌹 Hacer florecer
+    </button>
+
+</div>
+
+<script>
+function florecer() {
+
+    const rosa = document.getElementById("rosa");
+
+    rosa.classList.remove("floreciendo");
+
+    void rosa.offsetWidth;
+
+    rosa.classList.add("floreciendo");
+}
+</script>
+
+</body>
+</html>
+
